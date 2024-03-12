@@ -97,6 +97,45 @@ def three_sum(arr):
     return res
 
 print(three_sum([-2,0,0,2,2]))
+
+
+def three_sum_optimized(arr):
+    #creating a set before hand to avoid adding duplicates
+    n = len(arr)
+    if n <3:
+        return []
+    if n ==3:
+        if (arr[0]+arr[1]+arr[2]==0):
+            return[[arr[0],arr[1],arr[2]]]
+        else:
+            return []
+    ans =[]
+    arr.sort()
+    n = len(arr)
+    for i in range(n-2):
+        left = i+1
+        right = n-1
+        current_elements = []
+        while(left<right):
+            #rather than checking other condition check if equals meets first
+            current_sum = arr[right] + arr[left] + arr[i]
+            if current_sum == 0:
+                current_elements = [arr[i],arr[left],arr[right]]
+                left += 1
+                right -=1
+                if current_elements in ans:
+                    continue
+                ans.append(current_elements)
+            elif(current_sum < 0):
+                left +=1 
+            else:
+                right -= 1
+    return ans 
+
+print(three_sum_optimized([-1,0,1,2,-1,-4]))               
+
+
+
         
 
 
