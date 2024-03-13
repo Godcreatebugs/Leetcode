@@ -174,3 +174,27 @@ class minStackOptimum:
     
 
 print(-2**-32,-2**-32)    
+
+
+class min_stack_pragma:
+    def __init__(self) -> None:
+        self.stack = []
+        self.min_stack= []
+
+    def top(self)->int:
+        return self.stack[-1]
+
+    def getMin(self)-> int:
+        return self.min_stack[-1]
+
+    def push(self,val:int):
+        self.stack.append(val)
+        if not self.min_stack or val <= self.min_stack[-1]:
+            self.min_stack[-1] = val
+
+    def pop(self)-> None:
+        #one thing I learned is self.stack.pop(the first part will be always exceuted)
+        # and if we have match we will remove that ele from min_stack two
+        if self.stack.pop() == self.min_stack[-1]:
+            self.min_stack.pop()
+
